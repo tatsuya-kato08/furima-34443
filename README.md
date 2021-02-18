@@ -37,20 +37,8 @@
 ## Association
 
 - belongs_to :user
-- has_many :images
 - has_one :purchase
 
-## imagesテーブル
-
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| image  | string     | null: false                    |
-| item   | references | null: false, foreign_key: true |
-
-
-## Association
-
-- belongs_to :item
 
 ## purchasesテーブル
 
@@ -58,7 +46,6 @@
 | ------- | ---------- | ------------------------------ |
 | user    | references | null: false, foreign_key: true |
 | item    | references | null: false, foreign_key: true |
-| address | references | null: false, foreign_key: true |
 
 
 ## Association
@@ -76,7 +63,7 @@
 | city     | string     | null: false                    |
 | number   | string     | null: false                    |
 | phone    | string     | null: false                    |
-| building | string     | null: false                    |
+| building | string     |                                |
 | purchase | references | null: false, foreign_key: true |
 
 
