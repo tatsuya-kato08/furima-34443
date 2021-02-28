@@ -14,6 +14,7 @@ RSpec.describe PurchaseAddress, type: :model do
     end
 
     context '商品が購入できない時' do
+
       it '郵便番号が空の場合は購入できない' do
         @purchase_address.code = ''
         @purchase_address.valid?
@@ -54,6 +55,12 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.phone = ''
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Phone can't be blank")
+      end
+
+      it "tokenが空では登録できないこと" do
+        @purchase_address.token = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
