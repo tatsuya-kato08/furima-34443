@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
   end
 
   def second_item
-    unless current_user == @item.user
+    if current_user != @item.user || @item.purchase.present?
       redirect_to root_path
     end
   end
