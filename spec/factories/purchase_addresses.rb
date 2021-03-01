@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :purchase_address do
-    user_id     { 1 }
-    item_id     { 1 }
     code        { "123-4567" }
     area_id     { 2 }
     city        { "中央区" }
@@ -9,5 +7,6 @@ FactoryBot.define do
     building    { "柳ビル103" }
     phone       { "09012345678" }
     token {"tok_abcdefghijk00000000000000000"}
+
   end
 end

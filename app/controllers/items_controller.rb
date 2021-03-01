@@ -59,7 +59,6 @@ class ItemsController < ApplicationController
   end
 
   def third_item
-    @item = Item.find(params[:id])
     if @item.purchase.present?
       redirect_to root_path
     end
