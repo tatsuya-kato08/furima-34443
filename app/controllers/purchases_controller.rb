@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
-  before_action :purchase_item, only: [:index, :create]
   before_action :item_record, only: [:index, :create]
+  before_action :purchase_item, only: [:index, :create]
 
   def index
     @purchase_address = PurchaseAddress.new 
@@ -33,15 +33,14 @@ class PurchasesController < ApplicationController
       )
   end
 
-  def purchase_item
+  def item_record
     @item = Item.find(params[:item_id])
+  end
+
+  def purchase_item
     if current_user == @item.user || @item.purchase.present?
       redirect_to root_path
     end
-  end
-
-  def item_record
-    @item = Item.find(params[:item_id])
   end
 
 end

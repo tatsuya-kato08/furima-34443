@@ -75,9 +75,9 @@ RSpec.describe PurchaseAddress, type: :model do
       end
 
       it '電話番号は11桁以内の数値のみ出ない場合は購入できない' do
-        @purchase_address.phone = ''
+        @purchase_address.phone = '090123456789'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid. Include half-width numbers")
+        expect(@purchase_address.errors.full_messages).to include()
       end
 
       it "tokenが空では登録できないこと" do
