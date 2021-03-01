@@ -11,9 +11,27 @@ RSpec.describe PurchaseAddress, type: :model do
       it '必要な情報を適切に入力すると保存できる' do
         expect(@purchase_address).to be_valid
       end
+
+      it '建物名が空でも購入できる' do
+        @purchase_address.building = ''
+        expect(@purchase_address).to be_valid
+      end
+
     end
 
     context '商品が購入できない時' do
+
+      it 'user_idが空の場合は購入できない' do
+        @purchase_address.user_id = ''
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空の場合は購入できない' do
+        @purchase_address.item_id = ''
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
+      end
 
       it '郵便番号が空の場合は購入できない' do
         @purchase_address.code = ''
@@ -46,15 +64,15 @@ RSpec.describe PurchaseAddress, type: :model do
       end
 
       it '電話番号が空の場合は購入できない' do
-        @purchase_address.phone = ''
+        @purchase_address.phone = '090123456789'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone can't be blank")
+        expect(@purchase_address.errors.full_messages).to include()
       end
 
       it '電話番号は11桁以内の数値のみ出ない場合は購入できない' do
         @purchase_address.phone = ''
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Phone can't be blank")
+        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid. Include half-width numbers")
       end
 
       it "tokenが空では登録できないこと" do

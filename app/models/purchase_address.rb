@@ -8,6 +8,8 @@ class PurchaseAddress
     validates :number
     validates :phone, numericality: { with: /\A0[0-9]+\z/, message: 'number is invalid. Include half-width numbers' }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   validates :area_id, numericality: { other_than: 1 }

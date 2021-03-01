@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_fee
   belongs_to :area
   belongs_to :day
-
+  
   with_options presence: true do
     validates :name
     validates :description
